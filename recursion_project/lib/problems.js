@@ -171,7 +171,13 @@ console.log(flatten([1, 2, [[3, 4], [5, [6]]], [7, 8]]))
 // fileFinder(desktop, 'everlong.flac');            // => true
 // fileFinder(desktop, 'sequoia.jpeg');             // => false
 function fileFinder(directories, targetFile) {
+    for (let dir in directories) {
+        if (dir === targetFile || fileFinder(directories[dir], targetFile) === true) {
+            return true;
+        }
+    }
 
+    return false;
 }
 
 
@@ -185,7 +191,18 @@ function fileFinder(directories, targetFile) {
 // pathFinder(desktop, 'everlong.flac'));       // => '/music/genres/rock/everlong.flac'
 // pathFinder(desktop, 'honeybadger.png'));     // => null
 function pathFinder(directories, targetFile) {
+    for (let dir in directories) {
+        if (dir === targetFile) {
+            return '/' + dir;
+        }
 
+        let path = pathFinder(directories[dir], targetFile);
+        if (path !== null) {
+            return dir + path;
+        }
+    }
+
+    return null;
 }
 
 
