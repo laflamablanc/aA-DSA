@@ -96,12 +96,18 @@ function maxNonAdjacentSum(nums, memo = {}) {
 // minChange([1, 5, 10, 25], 15)    // => 2, because 10 + 5 = 15
 // minChange([1, 5, 10, 25], 100)   // => 4, because 25 + 25 + 25 + 25 = 100
 function minChange(coins, amount) {
-    let table = new Array(amount + 1)
+    let table = new Array(amount + 1).fill(Infinity)
     amount[0] = 0
-    for (let i = 0; i<table.length; i++){
-        amount[i]
-    }
-
+    coins.forEach(value => {
+      for (let amt =0; amt < table.length; i++){
+        for (let qty = 0; qty * value <= amt; qty++){
+          remainder = amt - qty * value
+          let check = table[remainder] + qty
+          if (check < table[amt]) table[amt] = check
+        }
+      }
+    })
+    return table[table.length] - 1
 }
 
 
