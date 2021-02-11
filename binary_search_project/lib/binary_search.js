@@ -1,5 +1,4 @@
 function binarySearch(array, target) {
-    console.log(array, target)
     if (array.length === 0) return false
 
     let midIdx = Math.floor(array.length/2)
@@ -15,10 +14,20 @@ function binarySearch(array, target) {
     }
 }
 
-function binarySearchIndex(array, target) {
-    if (array.length === 0) return false
+function binarySearchIndex(array, target, min=0, max=array.length-1) {
+    if (min == max) return -1
+    
 
-    let midIdx = Math.floor
+    let midIdx = Math.floor((min + max)/2)
+    // console.log(array, target, min, max, midIdx)
+    if (target > array[midIdx]){
+        return binarySearchIndex(array, target, midIdx+1, max)
+    } else if (target < array[midIdx]){
+        return binarySearchIndex(array, target, min, midIdx)
+    } else {
+        return midIdx
+    }
+
 }
 
 
@@ -27,3 +36,4 @@ module.exports = {
     binarySearchIndex
 };
 
+console.log(binarySearchIndex([1,2,3,5,7,8,9,13], 7))
