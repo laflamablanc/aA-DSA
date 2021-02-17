@@ -62,7 +62,7 @@
 // -----------
 function reverseLinkedList(linkedList) {
   // TODO: Implement the reverseLinkedList function!
-  console.log(linkedList)
+  
 }
 
 // ----------------------------------------
@@ -96,6 +96,7 @@ class LinkedList {
     return this;
   }
 }
+
 
 exports.Node = Node;
 exports.LinkedList = LinkedList;
